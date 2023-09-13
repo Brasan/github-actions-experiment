@@ -44,5 +44,5 @@ jobs:
       - name: debug
         run: |
           cd C:\
-          Get-ChildItem vcvarsall.exe -Depth 100
+          Get-ChildItem 2022 -Directory -Depth 12
        
