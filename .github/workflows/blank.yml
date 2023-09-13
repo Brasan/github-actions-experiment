@@ -32,6 +32,7 @@ jobs:
         run: |
           SET MYVAR=<readme.txt
           echo "MYVAR=%MYVAR%" >> "%GITHUB_OUTPUT%"
+          echo %GITHUB_OUTPUT%
 
       - name: second
         run: |
