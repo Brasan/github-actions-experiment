@@ -40,4 +40,9 @@ jobs:
         run: |
           echo "$Env:MYVAR"
           echo "Done"
+
+      - name: debug
+        run: |
+          cd C:\
+          Get-ChildItem vcvarsall.exe -Depth 100
        
