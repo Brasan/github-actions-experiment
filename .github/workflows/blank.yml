@@ -29,12 +29,15 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: first
+        id: varout
         run: |
           SET MYVAR=<readme.txt
           echo "MYVAR=%MYVAR%" >> "%GITHUB_OUTPUT%"
-          echo %GITHUB_OUTPUT%
+          
 
       - name: second
+        env:
+          MYVAR: ${{ steps.varout.outputs.MYVAR }}
         run: |
           echo "%MYVAR%"
           echo "Done"
