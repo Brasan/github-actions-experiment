@@ -32,7 +32,7 @@ jobs:
         id: varout
         run: |
           $Env:MYVAR= Get-Content readme.txt -First 1
-          echo "$Env:MYVAR" >> "$Env:GITHUB_OUTPUT"
+          echo "MYVAR=$Env:MYVAR" >> "$Env:GITHUB_OUTPUT"
 
       - name: second
         env:
