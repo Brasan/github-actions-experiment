@@ -41,8 +41,13 @@ jobs:
           echo "$Env:MYVAR"
           echo "Done"
 
-      - name: debug
+      - name: Set build number
+        id: setversion
         run: |
-          cd C:\
-          Get-ChildItem 2022 -Directory -Depth 12
+           $Env:GNGU_GNGS_VERSION="1.2.3"
+           $Env:REVISION_NUMBER = git rev-list --count HEAD #The result here is an empty variable it seems?
+           $Env:BUILD_NUMBER=$Env:GNGU_GNGS_VERSION+'.'+$Env:REVISION_NUMBER
+           echo "BUILD_NUMBER=$Env:BUILD_NUMBER" >> "$Env:GITHUB_OUTPUT"
+           echo $Env:BUILD_NUMBER
+
        
