@@ -22,7 +22,7 @@ jobs:
 
     defaults:
           run:
-            shell: cmd
+            shell: pwsh
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -31,16 +31,13 @@ jobs:
       - name: first
         id: varout
         run: |
-          SET MYVAR=<readme.txt
-          echo "MYVAR=%MYVAR%" >> "%GITHUB_OUTPUT%"
-          echo "MYVAR=%MYVAR%" >> %GITHUB_OUTPUT%
-          echo "MYVAR=%MYVAR%" >> "$GITHUB_OUTPUT"
-          
+          $Env:MYVAR= Get-Content readme.txt -First 1
+          echo "$Env:MYVAR" >> "$Env:GITHUB_OUTPUT"
 
       - name: second
         env:
           MYVAR: ${{ steps.varout.outputs.MYVAR }}
         run: |
-          echo "%MYVAR%"
+          echo "$Env:MYVAR"
           echo "Done"
        
