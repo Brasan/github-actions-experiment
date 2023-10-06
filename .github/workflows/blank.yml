@@ -28,26 +28,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: first
-        id: varout
-        run: |
-          $Env:MYVAR= Get-Content readme.txt -First 1
-          echo "MYVAR=$Env:MYVAR" >> "$Env:GITHUB_OUTPUT"
+      - name: compile
+        run: dotnet compile .\CrashMe\CrashMe.csproj
 
-      - name: second
-        env:
-          MYVAR: ${{ steps.varout.outputs.MYVAR }}
-        run: |
-          echo "$Env:MYVAR"
-          echo "Done"
+      - name: run crash?
+        run: .\CrashMe\bin\release\net7.0\CrashMe.exe
 
-      - name: Set build number
-        id: setversion
-        run: |
-           $Env:GNGU_GNGS_VERSION="1.2.3"
-           $Env:REVISION_NUMBER = git rev-list --count HEAD #The result here is an empty variable it seems?
-           $Env:BUILD_NUMBER=$Env:GNGU_GNGS_VERSION+'.'+$Env:REVISION_NUMBER
-           echo "BUILD_NUMBER=$Env:BUILD_NUMBER" >> "$Env:GITHUB_OUTPUT"
-           echo $Env:BUILD_NUMBER
 
        
