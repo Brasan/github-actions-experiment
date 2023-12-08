@@ -28,7 +28,8 @@ jobs:
               with:
                 base: ${{github.ref}}
                 filters: | # TODO: Add more folders here to their appropriate program tag
-                    changed: folder1/**
+                    changed: folder2/**
+                    #changed: folder1/**
     build:
     
         runs-on: windows-latest
