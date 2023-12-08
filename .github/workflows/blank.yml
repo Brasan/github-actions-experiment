@@ -13,21 +13,43 @@ on:
 
 
 jobs:
- 
-  build:
-    
-    runs-on: windows-latest
+    Setup:
+        runs-on: ubuntu-latest
 
-    defaults:
-          run:
-            shell: pwsh
+        outputs:
+          changed: ${{ steps.haschanged.outputs.changed }}
+          
+        steps:
+            - name: Checkout
+              uses: actions/Checkout@v3
+              
+            - uses: dorny/paths-filter@v2
+              id: haschanged
+              with:
+                filters: | # TODO: Add more folders here to their appropriate program tag
+                    changed: folder1/**
+    build:
     
-    steps:
-      
-      - uses: actions/checkout@v3
+        runs-on: windows-latest
 
-      - name: print
-        run: Get-Content branch.txt
+        defaults:
+              run:
+                shell: pwsh
+
+        steps:
+          
+          - uses: actions/checkout@v3
+
+          - name: print
+            run: Get-Content branch.txt
+
+    cond:
+        needs: Setup
+        runs-on: windows-latest
+        if: ${{ needs.Setup.outputs.changed == 'true' }}
+        steps:
+          - name: print
+            run: echo "changed"
 
 
        
