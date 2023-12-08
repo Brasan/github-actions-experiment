@@ -26,6 +26,7 @@ jobs:
             - uses: dorny/paths-filter@v2
               id: haschanged
               with:
+                base: ${{github.ref}}
                 filters: | # TODO: Add more folders here to their appropriate program tag
                     changed: folder1/**
     build:
