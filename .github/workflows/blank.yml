@@ -42,7 +42,9 @@ jobs:
           - uses: actions/checkout@v3
 
           - name: print
-            run: Get-Content branch.txt
+            run: |
+                Get-Content branch.txt
+                echo "hejsanASDasDAS"
 
     cond:
         needs: Setup
@@ -50,7 +52,7 @@ jobs:
         if: ${{ needs.Setup.outputs.changed == 'true' }}
         steps:
           - name: print
-            run: echo "changed"
+            run: echo "changedADASDS"
 
 
        
