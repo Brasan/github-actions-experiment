@@ -1,5 +1,6 @@
 ﻿namespace CrashMe
 {
+    //nothingchange
     internal class Program
     {
         static void Main(string[] args)
