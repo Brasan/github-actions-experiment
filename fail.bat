@@ -1,2 +1,2 @@
 echo "this should fail"
-EXIT \B 1
+RUN HACK_TO_PRODUCE_ERROR_CODE.exe
