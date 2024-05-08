@@ -11,16 +11,18 @@ on:
 
 
 jobs:
-    
+
     build:
     
         runs-on: windows-latest
-
+        defaults:
+          run:
+            shell: cmd
         steps:
           
           - uses: actions/checkout@v3
 
           - name: print
-            shell: cmd
+
             run: .\fail.bat
 
