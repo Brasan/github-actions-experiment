@@ -8,26 +8,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  
-  workflow_dispatch:
 
 
 jobs:
-    Setup:
-        runs-on: ubuntu-latest
-
-        outputs:
-          changed: ${{ steps.haschanged.outputs.changed }}
-          
-        steps:
-            - name: Checkout
-              uses: actions/Checkout@v3
-              
-            - uses: dorny/paths-filter@v2
-              id: haschanged
-              with:
-                filters: | # TODO: Add more folders here to their appropriate program tag
-                    changed: folder1/**
+    
     build:
     
         runs-on: windows-latest
@@ -41,15 +25,5 @@ jobs:
           - uses: actions/checkout@v3
 
           - name: print
-            run: Get-Content branch.txt
+            run: fail.bat
 
-    cond:
-        needs: Setup
-        runs-on: windows-latest
-        if: ${{ needs.Setup.outputs.changed == 'true' }}
-        steps:
-          - name: print
-            run: echo "changed"
-
-
-       
